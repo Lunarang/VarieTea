@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+        <%= link_to 'VarieTea', root_path, class:"navbar-brand" %>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <%# login/logout/signup buttons build into navigation bar... sign up on home page as well. %>
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to "Logout",
+                        destroy_user_session_path, turbo_method: :delete, class:"nav-link" %>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <%= link_to "Login",
+                        new_user_session_path, class:"nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "SignUp",
+                        new_user_registration_path, class:"nav-link" %>
+                    </li>
+                <% end %>
+
+                <li class="nav-item">
+                    <%= link_to "Teas",
+                    teas_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Badges",
+                    badges_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Benefits",
+                    benefits_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Ingredients",
+                    ingredients_path, class:"nav-link" %>
+                </li>
+            </ul>
+
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
