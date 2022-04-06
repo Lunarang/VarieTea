@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  
-  devise_for :users
+
   root 'static#home'
 
-  # Third party authorization
-  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  #devise_scope :user do
+  #  delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  #nd
 
   # static_controller
   get 'badges', to: 'static#badges'
@@ -16,5 +18,5 @@ Rails.application.routes.draw do
   resources :teas, only: [:index, :show] #view all teas, or single tea profile
   resources :benefits
   resources :ingredients
-  
+
 end
