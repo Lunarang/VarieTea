@@ -1,0 +1,7 @@
+<h1> Teas </h1>
+
+<ul>
+    <% @teas.each do |tea| %>
+        <li ><%= link_to "#{tea.name}", tea_path(tea.id) %></li>
+    <% end %>
+</ul>

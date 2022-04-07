@@ -1,0 +1,7 @@
+<h1> Benefits </h1>
+
+<ul>
+    <% @benefits.each do |ben| %>
+        <li ><%= link_to "#{ben.name}", benefit_path(ben.id) %></li>
+    <% end %>
+</ul>
