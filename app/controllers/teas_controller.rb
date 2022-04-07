@@ -1,5 +1,10 @@
 class TeasController < ApplicationController
 
+    #GET - Tea.newest scope method
+    def newest
+        @new_teas = Tea.newest.all
+    end
+
     #GET - Index => /teas
     def index
         @teas = Tea.all
