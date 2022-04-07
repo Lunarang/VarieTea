@@ -4,17 +4,18 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  #devise_scope :user do
-  #  delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  #nd
+  # nested 
+  resource :user, only: [:show] do
+    resources :badges, only: [:index] #view index only for user
+    resources :teas, only: [:new, :create, :edit, :update] #new/create & edit/update options for user submitted data
+  end
 
   # static_controller
   get 'badges', to: 'static#badges'
 
-  # user scope method urls
-  get '/users/:id/favorites', to: 'users#favorites'
-  get '/users/:id/tasted', to: 'users#tasted'
-
+  # tea scope method url
+  get '/teas/newest', to: 'teas#newest'
+ 
   resources :teas, only: [:index, :show] #view all teas, or single tea profile
   resources :benefits
   resources :ingredients
