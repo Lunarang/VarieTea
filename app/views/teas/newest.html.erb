@@ -1,0 +1,7 @@
+<h1>Our Newest Additions</h1>
+
+<ul>
+    <% @new_teas.each do |tea| %>
+        <li ><%= link_to "#{tea.name}", tea_path(tea.id) %> | <%= tea.created_at %> </li>
+    <% end %>
+</ul>
