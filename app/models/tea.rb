@@ -8,4 +8,6 @@ class Tea < ApplicationRecord
 
     validates :name, presence: true, uniqueness: { case_sensitive: false }
     validates :preparation, presence: true
+
+    scope :newest, -> { order(created_at: :desc).limit(3) }
 end
