@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(name: "Erin", email: "erinsmells@gmail.com", password: "password")
+#User.create!(name: "Erin", email: "erinsmells@gmail.com", password: "password")
 
 teas = [
    {name: "Green", preparation: "Steep 3 minutes"}, 
@@ -15,7 +15,7 @@ teas = [
     {name: "Pomegranate, Blueberry, & Acai Green", preparation: "Steep 1-2 minutes"}
 ]
 teas.each do |t|
-    Tea.create! t
+    Tea.create!(t)
 end
 
 benefits = [
@@ -26,7 +26,7 @@ benefits = [
     {name: "Anti-Inflammatory"}
 ]
 benefits.each do |b|
-    Benefit.create! b
+    Benefit.create!(b)
 end
 
 ingredients = [
@@ -42,7 +42,7 @@ ingredients = [
     {name: "Cinnamon"}
 ]
 ingredients.each do |i|
-    Ingredient.create! i
+    Ingredient.create!(i)
 end
 
 Tea.find(1).benefits << [Benefit.find(1), Benefit.find(5)]
