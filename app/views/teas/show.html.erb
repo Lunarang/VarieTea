@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-end"><%= @tea.name %></h1>
+        </div>
+        <div class="col">
+            <br/>
+            <br/>
+            <div class="border-start">
+                <div class="ps-3">
+                    <h4>Preparation</h4>
+                    <%= @tea.preparation%>
+                    <br/>
+                    <br/>
+                    <strong>Benefits</strong>
+                    <% @tea.benefits.each do |benefit| %>
+                        | <%= link_to "#{benefit.name}", benefit_path(benefit.id) %>
+                    <% end %>
+                    <br/>
+                    <br/>
+                    <strong>Ingredients</strong>
+                    <% @tea.ingredients.each do |ingredient| %>
+                        | <%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %>
+                    <% end %>
+                    <br/>
+                    <br/>
+                    <%= link_to "Back", teas_path, class:"btn btn-dark" %>
+                    <button type="button" class="btn btn-outline-danger">Favorite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
