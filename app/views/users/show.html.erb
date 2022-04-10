@@ -1,0 +1,58 @@
+<div class="container">
+    <h1>Your Profile</h1>
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-6 col-md-4">
+                <img src="<%= image_url("lemon.png") %>" class="img-fluid" alt="...">
+            </div>
+            <div class="col-sm-6 col-md-8">
+                <div class="ml-3 w-100">
+                    <h2><%= current_user.name %></h2>
+                    <button type="button" class="btn btn-outline-dark">Teas Tasted: 0</button>
+                    <button type="button" class="btn btn-outline-danger">Teas Loved: 0</button>
+                    <button type="button" class="btn btn-outline-info">Badges Earned: 0</button>
+                    <button type="button" class="btn btn-outline-success">Teas Created: 0</button>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">Badges</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Badge 1</li>
+                                    <li class="list-group-item">Badge 2</li>
+                                    <li class="list-group-item">Badge 3</li>
+                                </ul>
+                                </div>
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-light">View All</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">Favorites</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Tea 1</li>
+                                    <li class="list-group-item">Tea 2</li>
+                                    <li class="list-group-item">Tea 3</li>
+                                </ul>
+                                </div>
+                                <div class="card-body">
+                                    <button type="button" class="btn btn-light">View All</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <% @favorites.each do |fav| %>
+                fav
+            <% end %>
+            <button type="button" class="btn btn-dark btn-lg">Edit Profile</button>
+        </div>
+    </div>
+</div>
