@@ -5,19 +5,20 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   # nested 
-  resource :user, only: [:show] do
+  resources :users, only: [:show] do
+    get 'teas', to: 'users#teas'
     resources :badges, only: [:index] #view index only for user
-    resources :teas, only: [:new, :create, :edit, :update] #new/create & edit/update options for user submitted data
+    resources :teas, only: [:new, :edit, :update] #new/create & edit/update options for user submitted data
+    resources :benefits, only: [:new, :create, :edit, :update]
+    resources :ingredients, only: [:new, :create, :edit, :update]
+    resources :favorites, only: [:create, :destroy]
   end
-
-  # static_controller
-  get 'badges', to: 'static#badges'
 
   # tea scope method url
   get '/teas/newest', to: 'teas#newest'
  
-  resources :teas, only: [:index, :show] #view all teas, or single tea profile
-  resources :benefits
-  resources :ingredients
+  resources :teas, only: [:index, :show, :create] #view all teas, or single tea profile
+  resources :benefits, only: [:index, :show]
+  resources :ingredients, only: [:index, :show]
 
 end
