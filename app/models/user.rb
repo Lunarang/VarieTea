@@ -9,8 +9,6 @@ class User < ApplicationRecord
 
   after_create :add_badges
 
-  attr_accessor :favs
-
   # Public methods
 
   def favorite!(tea)
@@ -20,8 +18,11 @@ class User < ApplicationRecord
         tea_saved.save!
     else
         self.teas << tea
-        tea_saved.favorite = true
-        tea_saved.save!
+        self.save!
+        tea.save!
+        new_tea = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+        new_tea.favorite = true
+        new_tea.save!
     end
   end
 
@@ -33,6 +34,16 @@ class User < ApplicationRecord
       end
   end
 
+  def total_favorites
+    count = 0
+    self.teas.each do |tea|
+      tea_saved = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+      if tea_saved.favorite == true
+        count += 1
+      end
+    end
+    count
+  end
   #It is considered good practice to declare callback methods as private. 
   #If left public, they can be called from outside of the model and violate the principle of object encapsulation.
   private
@@ -48,16 +59,10 @@ class User < ApplicationRecord
       self.badges.push(badges)
     end
 
-    def favorites
-      favs_list = []
-      self.teas.each do |tea|
-        if tea.favorite?
-          favs_list << tea
-        end
-        @favs = favs_list
-      end
+    def favs
+      @favs = []
     end
-
+    
     #def tasted here
 
     def self.from_omniauth(auth)

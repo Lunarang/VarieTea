@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-    before_action :set_task, only: [:create, :destroy]
+    before_action :set_tea, only: [:create, :destroy]
   
     def create
       current_user.favorite!(@tea)
