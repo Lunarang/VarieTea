@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resources :teas, only: [:new, :edit, :update] #new/create & edit/update options for user submitted data
     resources :benefits, only: [:new, :create, :edit, :update]
     resources :ingredients, only: [:new, :create, :edit, :update]
-    resources :favorites, only: [:create, :destroy]
   end
 
+  resources :favorites, only: [:create, :destroy]
+  
   # tea scope method url
   get '/teas/newest', to: 'teas#newest'
  
