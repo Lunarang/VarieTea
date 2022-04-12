@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # nested 
   resources :users, only: [:show] do
+    get 'favorites', to: 'users#favorites'
     get 'teas', to: 'users#teas'
     resources :badges, only: [:index] #view index only for user
     resources :teas, only: [:new, :edit, :update] #new/create & edit/update options for user submitted data
