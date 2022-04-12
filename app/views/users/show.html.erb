@@ -26,7 +26,7 @@
                                 </ul>
                                 </div>
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-light">View All</button>
+                                    <%= link_to "View All", user_badges_path(current_user.id), class:"btn btn-light" %>
                                 </div>
                             </div>
                         </div>
@@ -35,13 +35,13 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Favorites</h4>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Tea 1</li>
-                                    <li class="list-group-item">Tea 2</li>
-                                    <li class="list-group-item">Tea 3</li>
+                                    <% @favorites.first(3).each do |fav| %>
+                                    <li class="list-group-item"><%= fav.name %></li>
+                                    <% end %>
                                 </ul>
                                 </div>
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-light">View All</button>
+                                    <%= link_to "View All", user_favorites_path(current_user.id), class:"btn btn-light" %>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     <br/>
                 </div>
             </div>
-            <button type="button" class="btn btn-dark btn-lg">Edit Profile</button>
+            <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-dark btn-lg" %>
         </div>
     </div>
 </div>
