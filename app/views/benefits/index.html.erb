@@ -1,7 +1,7 @@
 <h1> Benefits </h1>
 
-<ul>
+<ul class="list-group list-group-flush">
     <% @benefits.each do |ben| %>
-        <li ><%= link_to "#{ben.name}", benefit_path(ben.id) %></li>
+        <li class="list-group-item"><%= link_to "#{ben.name}", benefit_path(ben.id) %></li>
     <% end %>
 </ul>
