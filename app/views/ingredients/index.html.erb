@@ -1,7 +1,7 @@
 <h1> Ingredients </h1>
 
-<ul>
+<ul class="list-group list-group-flush">
     <% @ingredients.each do |ing| %>
-        <li ><%= link_to "#{ing.name}", ingredient_path(ing.id) %></li>
+        <li class="list-group-item"><%= link_to "#{ing.name}", ingredient_path(ing.id) %></li>
     <% end %>
 </ul>
