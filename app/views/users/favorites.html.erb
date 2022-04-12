@@ -1,0 +1,14 @@
+<h1>Your Favorites</h1>
+<div class="row">
+    <% @favorites.each do |fav| %>
+        <div class="col">
+            <div class="card text-center">
+                image here
+                <div class="card-body">
+                    <h4 class="card-title"><%= fav.name %></h4>
+                    <%= link_to "View", tea_path(fav.id), class:"btn btn-light" %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
