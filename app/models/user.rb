@@ -44,6 +44,22 @@ class User < ApplicationRecord
     end
     count
   end
+
+  def all_favorites
+    favorites = []
+    self.teas.each do |tea|
+      tea_saved = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+      if tea_saved.favorite == true
+        favorites << tea
+      end
+    end
+    favorites
+  end
+
+  def all_teas
+    self.teas.all
+  end
+
   #It is considered good practice to declare callback methods as private. 
   #If left public, they can be called from outside of the model and violate the principle of object encapsulation.
   private
