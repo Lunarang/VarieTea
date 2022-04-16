@@ -1,14 +1,9 @@
 <h1>Your Teas</h1>
-<div class="row">
+
+<ul class="list-group list-group-flush">
     <% @teas.each do |tea| %>
-        <div class="col">
-            <div class="card text-center">
-                image here
-                <div class="card-body">
-                    <h4 class="card-title"><%= tea.name %></h4>
-                    <%= link_to "View", tea_path(tea.id), class:"btn btn-light" %>
-                </div>
-            </div>
-        </div>
+        <li class="list-group-item">
+            <%= link_to "#{tea.name}", tea_path(tea.id) %>
+        </li>
     <% end %>
-</div>
+</ul>
