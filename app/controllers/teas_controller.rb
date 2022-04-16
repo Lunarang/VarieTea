@@ -19,24 +19,39 @@ class TeasController < ApplicationController
 
     #POST - Create => /teas
     def create
-        @tea = Tea.new(tea_params)
+        @tea = Tea.create(tea_params)
         respond_to do |format|
           if @tea.save
-            format.html { redirect_to @tea, notice: 'Tea was successfully created.' }
-            format.json { render action: 'show', status: :created, location: @tea }
+            current_user.teas << @tea
+            format.html { redirect_to @tea, notice: "Tea was successfully created."}
+            format.json { render :show, status: :created, location: @tea }
           else
-            format.html { render action: 'new' }
-            format.json { render json: @tea.errors, status: :unprocessable_entity }
+            format.html { render :new }
+            format.json { render json: @tea.errors.full_messages, status: :unproccessable_entity }
           end
         end
     end
 
     #GET - Edit (render form) => /teas/:id/edit
     def edit
+        @tea = Tea.find(params[:id])
+        @benefits = @tea.benefits.build
+        @ingredients = @tea.ingredients.build
     end
 
     #PATCH - Update => /teas/:id
     def update
+        @tea = Tea.find(params[:id])
+        @tea.update(tea_params)
+        respond_to do |format|
+            if @tea.save
+              format.html { redirect_to @tea, notice: 'Tea was successfully updated.' }
+              format.json { render action: 'show', status: :created, location: @tea }
+            else
+              format.html { render action: 'edit' }
+              format.json { render json: @tea.errors, status: :unprocessable_entity }
+            end
+        end
     end
 
     #GET - Read/Show => /teas/:id
@@ -46,12 +61,18 @@ class TeasController < ApplicationController
 
     #DELETE - Destroy => /teas/:id
     def destroy
+        @tea = Tea.find(params[:id])
+        @tea.users.clear
+        @tea.ingredients.clear
+        @tea.benefits.clear
+        @tea.destroy
+        redirect_to user_teas_path(current_user.id)
     end
     
     private
 
     def tea_params
-        params.require(:tea).permit(:name, :preparation, :benefit_ids => [], :benefits_attributes => [:name], :ingredient_ids => [], :ingredients_attributes => [:name])
+        params.require(:tea).permit(:name, :preparation, :user_id, :benefit_ids => [], :benefits_attributes => [:name], :ingredient_ids => [], :ingredients_attributes => [:name])
     end
 
 end
