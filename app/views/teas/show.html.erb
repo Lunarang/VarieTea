@@ -4,28 +4,36 @@
             <h1 class="text-end"><%= @tea.name %></h1>
         </div>
         <div class="col">
-            <br/>
-            <br/>
+            <br>
+            <br>
             <div class="border-start">
                 <div class="ps-3">
                     <h4>Preparation</h4>
                     <%= @tea.preparation%>
-                    <br/>
-                    <br/>
+                    <br>
+                    <br>
                     <strong>Benefits</strong>
                     <% @tea.benefits.each do |benefit| %>
                         | <%= link_to "#{benefit.name}", benefit_path(benefit.id) %>
                     <% end %>
-                    <br/>
-                    <br/>
+                    <br>
+                    <br>
                     <strong>Ingredients</strong>
                     <% @tea.ingredients.each do |ingredient| %>
                         | <%= link_to "#{ingredient.name}", ingredient_path(ingredient.id) %>
                     <% end %>
-                    <br/>
-                    <br/>
-                    <%= link_to "Back", teas_path, class:"btn btn-dark" %>
-                    <button type="button" class="btn btn-outline-danger"><%= toggle_favorite(@tea) %></button>
+                    <br>
+                    <br>
+                    <table>
+                        <tr>
+                            <th><%= toggle_favorite(@tea) %></th>
+                            <% if current_user.id == @tea.user_id %>
+                                <th><%= link_to "Edit", edit_user_tea_path(@tea.id), class:"btn btn-outline-secondary"%></th>
+                                <th><%= button_to "Delete", tea_path(@tea.id), method: :delete, class:"btn btn-outline-dark" %></th>
+                            <% end %>
+                            <th><%= link_to "Back", teas_path, class:"btn btn-dark" %></th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
