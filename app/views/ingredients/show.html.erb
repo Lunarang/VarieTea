@@ -8,10 +8,13 @@
             <br/>
             <div class="border-start">
                 <div class="ps-3">
-                    Description here!
+                    <ul class="list-group list-group-flush">
+                        <% @tea_list.each do |tea| %>
+                            <li class="list-group-item"><%= link_to "#{tea.name}", tea_path(tea.id) %></li>
+                        <% end %>
+                    </ul>
                     <br/>
                     <%= link_to "Back", ingredients_path, class:"btn btn-dark" %>
-                    <%= link_to "View Teas", teas_path, class:"btn btn-dark" %>
                 </div>
             </div>
         </div>
