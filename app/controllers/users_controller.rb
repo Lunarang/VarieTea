@@ -4,13 +4,14 @@ class UsersController < ApplicationController
     def show
         @user = current_user
         @total_favs = @user.total_favorites
+        @total_created = Tea.created_by(@user.id).count
         @favorites = @user.all_favorites
     end
     
     #GET - Read/Show => /users/:id/teas
     def teas
         @user = current_user
-        @teas = @user.all_teas
+        @teas = Tea.created_by(@user.id)
     end
 
     #GET - Read/Show => /users/:id/favorites

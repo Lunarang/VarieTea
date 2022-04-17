@@ -29,6 +29,7 @@ class BenefitsController < ApplicationController
     #GET - Read/Show => /benefits/:id
     def show
         @benefit = Benefit.find(params[:id])
+        @tea_list = Tea.with_benefit(@benefit.name)
     end
 
     #DELETE - Destroy => /benefits/:id

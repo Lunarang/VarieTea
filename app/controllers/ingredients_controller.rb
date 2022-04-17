@@ -29,6 +29,7 @@ class IngredientsController < ApplicationController
     #GET - Read/Show => /ingredients/:id
     def show
         @ingredient = Ingredient.find(params[:id])
+        @tea_list = Tea.with_ingredient(@ingredient.name)
     end
 
     #DELETE - Destroy => /ingredients/:id
