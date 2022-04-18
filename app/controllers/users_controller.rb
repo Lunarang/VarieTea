@@ -5,7 +5,10 @@ class UsersController < ApplicationController
         @user = current_user
         @total_favs = @user.total_favorites
         @total_created = Tea.created_by(@user.id).count
+        @total_tasted = @user.total_tasted
+        @total_badges = Badge.earned(@user.id).count
         @favorites = @user.all_favorites
+        @badges = Badge.earned(@user.id)
     end
     
     #GET - Read/Show => /users/:id/teas
