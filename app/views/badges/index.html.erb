@@ -1,1 +1,18 @@
-<h1> Users Badges </h1>
+<h1> Your Badges </h1>
+
+<ul class="list-group list-group-flush">
+    <% @badges_earned.each do |bad| %>
+        <li class="list-group-item">
+        <i class="fa-solid fa-mug-hot"></i>
+        <strong><%= bad.title %></strong>
+        <%= bad.body %>
+        </li>
+    <% end %>
+    <% @badges_not_earned.each do |bad| %>
+        <li class="list-group-item">
+        <i class="fa-solid fa-x"></i>
+        <strong><%= bad.title %></strong>
+        <%= bad.body %>
+        </li>
+    <% end %>
+</ul>
