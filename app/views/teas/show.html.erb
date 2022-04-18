@@ -27,6 +27,7 @@
                     <table>
                         <tr>
                             <th><%= toggle_favorite(@tea) %></th>
+                            <th><%= toggle_tasted(@tea) %></th>
                             <% if current_user.id == @tea.user_id %>
                                 <th><%= link_to "Edit", edit_user_tea_path(@tea.id), class:"btn btn-outline-secondary"%></th>
                                 <th><%= button_to "Delete", tea_path(@tea.id), method: :delete, class:"btn btn-outline-dark" %></th>
