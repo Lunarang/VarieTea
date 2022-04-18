@@ -1,0 +1,51 @@
+<%# Errors %>
+<% if @tea.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <strong><%= pluralize(@tea.errors.count, "error") %> prohibited this tea from being saved:</strong>
+        <ul>
+            <% @tea.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= form_with model: @tea do |f| %>
+    <div class="mb-3">
+    <%# Tea Name and Preparation %>
+    <%= f.text_field :name, class:"form-control", placeholder: "Tea Name" %>
+    <br>
+    <%= f.text_area :preparation, class:"form-control", placeholder: "Instructions for preparation..." %>
+    <br>
+
+    <%# Association to User %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <%# Select or Create Benefits %>
+    <fieldset>
+    <legend>Benefits</legend>
+        <%= f.label "Select Pre-Existing Benefits:" %><br>
+        <%= f.collection_check_boxes :benefit_ids, Benefit.all, :id, :name %>
+        <br>
+        <br>
+        <%= f.fields_for :benefits, @tea.benefits.build do |benefit| %>
+            <%= benefit.text_field :name, class:"form-control", placeholder: "Create New Benefit"  %>
+        <% end %>
+    </fieldset>
+    <br>
+    <%# Select or Create Ingredients %>
+    <fieldset>
+    <legend>Ingredients</legend>
+        <%= f.label "Select Pre-Existing Ingredients:" %><br>
+        <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %>
+        <br>
+        <br>
+        <%= f.fields_for :ingredients, @tea.ingredients.build do |ingredient| %>
+        <%= ingredient.text_field :name, class:"form-control", placeholder: "Create New Ingredient" %>
+        <% end %>
+    </fieldset>
+    <br>
+    
+    <%= f.submit %>
+    </div>
+<% end %>
