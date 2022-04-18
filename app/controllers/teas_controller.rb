@@ -56,7 +56,11 @@ class TeasController < ApplicationController
 
     #GET - Read/Show => /teas/:id
     def show
-        @tea = Tea.find(params[:id])
+        if user_signed_in?
+            @tea = Tea.find(params[:id])
+        else
+            redirect_to teas_path, notice: "You must be signed in to view any tea profiles!"
+        end
     end
 
     #DELETE - Destroy => /teas/:id
