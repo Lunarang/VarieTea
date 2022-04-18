@@ -1,12 +1,9 @@
 class BadgesController < ApplicationController
 
     def index
-        if user_signed_in?
-            @user = current_user
-            @badges = @user.badges
-       else
-           redirect root_path
-       end
+        @user = current_user
+        @badges_earned = Badge.earned(@user.id)
+        @badges_not_earned = Badge.not_earned(@user.id)
     end
 
 end
