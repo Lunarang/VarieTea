@@ -70,7 +70,7 @@ class TeasController < ApplicationController
         @tea.ingredients.clear
         @tea.benefits.clear
         @tea.destroy
-        redirect_to user_teas_path(current_user.id)
+        redirect_to user_teas_path(current_user.id), notice: "Tea successfully deleted!"
     end
     
     private
