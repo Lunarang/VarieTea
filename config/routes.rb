@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   # nested 
   resources :users, only: [:show] do
@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :favorites, only: [:create, :destroy]
-  
+  resources :tasted, only: [:create, :destroy]
+
   # tea scope method url
   get '/teas/newest', to: 'teas#newest'
  
