@@ -56,30 +56,56 @@ class User < ApplicationRecord
     favorites
   end
 
-  def all_teas
-    self.teas.all
+  def taste!(tea)
+    tea_saved = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+    if tea_saved
+        tea_saved.tasted = true
+        tea_saved.save!
+    else
+        self.teas << tea
+        self.save!
+        tea.save!
+        new_tea = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+        new_tea.tasted = true
+        new_tea.save!
+    end
   end
 
-  #It is considered good practice to declare callback methods as private. 
-  #If left public, they can be called from outside of the model and violate the principle of object encapsulation.
+  def untaste!(tea)
+      tea_saved = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+      if tea_saved
+          tea_saved.tasted = false
+          tea_saved.save!
+      end
+  end
+
+  def total_tasted
+    count = 0
+    self.teas.each do |tea|
+      tea_saved = UserTea.find_by(user_id: self.id, tea_id: tea.id)
+      if tea_saved.tasted == true
+        count += 1
+      end
+    end
+    count
+  end
+
   private
 
     def add_badges
-      badges = Badge.create([
+      badges = [
         {user_id: "#{self.id}", title: "Tiny Taster", body: "You've tasted at least 1 tea!"}, 
         {user_id: "#{self.id}", title: "Taste Tester", body: "You've tasted at least 5 teas!"}, 
         {user_id: "#{self.id}", title: "I Came, I Saw, I Tasted", body: "You've tasted at least 10 teas!"}, 
         {user_id: "#{self.id}", title: "Flavor Fav", body: "You've added at least 1 tea to your favorites!"}, 
         {user_id: "#{self.id}", title: "Super Flavor Fav", body: "You've added at least 5 teas to your favorites!"}
-        ])
-      self.badges.push(badges)
+        ]
+      badges.each do |b|
+        badge = Badge.create(b)
+        self.badges << badge
+      end
+      self.save
     end
-
-    def favs
-      @favs = []
-    end
-    
-    #def tasted here
 
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
