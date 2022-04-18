@@ -8,10 +8,10 @@
             <div class="col-sm-6 col-md-8">
                 <div class="ml-3 w-100">
                     <h2><%= current_user.name %></h2>
-                    <button type="button" class="btn btn-outline-dark">Teas Tasted: 0</button>
+                    <button type="button" class="btn btn-outline-dark">Teas Tasted: <%= @total_tasted%></button>
                     <button type="button" class="btn btn-outline-danger">Teas Loved: <%= @total_favs%></button>
-                    <button type="button" class="btn btn-outline-info">Badges Earned: 0</button>
-                    <button type="button" class="btn btn-outline-success">Teas Created: 0</button>
+                    <button type="button" class="btn btn-outline-info">Badges Earned: <%= @total_badges%></button>
+                    <button type="button" class="btn btn-outline-success">Teas Created: <%= @total_created %></button>
                     <br/>
                     <br/>
                     <div class="row">
@@ -20,9 +20,9 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Badges</h4>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Badge 1</li>
-                                    <li class="list-group-item">Badge 2</li>
-                                    <li class="list-group-item">Badge 3</li>
+                                    <% @badges.last(3).each do |bad| %>
+                                    <li class="list-group-item"><%= bad.name %></li>
+                                    <% end %>
                                 </ul>
                                 </div>
                                 <div class="card-body">
@@ -35,7 +35,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Favorites</h4>
                                 <ul class="list-group list-group-flush">
-                                    <% @favorites.first(3).each do |fav| %>
+                                    <% @favorites.last(3).each do |fav| %>
                                     <li class="list-group-item"><%= fav.name %></li>
                                     <% end %>
                                 </ul>
