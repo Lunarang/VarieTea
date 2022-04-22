@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :tasted, only: [:create, :destroy]
 
   # tea scope method url
-  get '/teas/newest', to: 'teas#newest'
+  get '/teas/latest', to: 'teas#latest'
  
   resources :teas, only: [:index, :show, :create, :update, :destroy] #view all teas, or single tea profile
   resources :benefits, only: [:index, :show]

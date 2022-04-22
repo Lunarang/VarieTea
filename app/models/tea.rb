@@ -11,7 +11,6 @@ class Tea < ApplicationRecord
 
     accepts_nested_attributes_for :benefits, :ingredients
 
-    scope :newest, -> { order(created_at: :desc).limit(3) }
     scope :with_ingredient, ->(ingredient_name) { includes(:ingredients).where(ingredients: { name: ingredient_name }) }
     scope :with_benefit, ->(benefit_name) { includes(:benefits).where(benefits: { name: benefit_name }) }
     scope :created_by, ->(user_id) { where(user_id: user_id) }

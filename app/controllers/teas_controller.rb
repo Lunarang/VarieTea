@@ -1,8 +1,8 @@
 class TeasController < ApplicationController
 
     #GET - Tea.newest scope method
-    def newest
-        @new_teas = Tea.newest.all
+    def latest
+        @latest_teas = Tea.all.order(:name).last(3)
     end
 
     #GET - Index => /teas
