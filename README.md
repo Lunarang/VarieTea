@@ -16,7 +16,6 @@ VarieTea is a complete Ruby on Rails application that manages related data throu
 :eyes: Watch the video [demo](https://vimeo.com/702151475)  
 :books: Read about the process on my [blog](https://codebaby.hashnode.dev/my-first-rails-project-varietea)  
 
-![varietea (1)](https://user-images.githubusercontent.com/63659148/192603029-7e2fed7d-3f12-4d9a-be0c-4bd7c9b2929b.png)
 ## Install :sparkles:
 
 ### Prerequesites
@@ -86,3 +85,5 @@ The repository is available as open source under the terms of the [MIT License](
 ## Code of Conduct :sparkles:
 
 Everyone interacting in this project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/lunarang/VarieTea/CODE_OF_CONDUCT.md).
+
+![varietea (1)](https://user-images.githubusercontent.com/63659148/192603029-7e2fed7d-3f12-4d9a-be0c-4bd7c9b2929b.png)
