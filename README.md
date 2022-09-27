@@ -68,7 +68,7 @@ Models and associations are as follows:
 ## Contributions :sparkles:
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/lunarang/VarieTea/CODE_OF_CONDUCT.md).
-To contribute to PTMGMT, follow these steps:
+To contribute to VarieTea, follow these steps:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
