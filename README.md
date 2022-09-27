@@ -1,4 +1,4 @@
-![varietea](https://user-images.githubusercontent.com/63659148/192599228-9fbac3a9-43d6-490d-a68e-e1c14f8a2b7a.png)
+![varietea](https://user-images.githubusercontent.com/63659148/192602888-0c922592-71fb-4fe8-91bf-2144d7e35898.jpg)
 
 VarieTea is a complete Ruby on Rails application that manages related data through complex forms and RESTful routes. The goal of the application is to build a Content Management System that allows the user to:
 
@@ -16,6 +16,7 @@ VarieTea is a complete Ruby on Rails application that manages related data throu
 :eyes: Watch the video [demo](https://vimeo.com/702151475)  
 :books: Read about the process on my [blog](https://codebaby.hashnode.dev/my-first-rails-project-varietea)  
 
+![varietea (1)](https://user-images.githubusercontent.com/63659148/192603029-7e2fed7d-3f12-4d9a-be0c-4bd7c9b2929b.png)
 ## Install :sparkles:
 
 ### Prerequesites
